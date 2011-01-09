@@ -25,7 +25,7 @@ INCPATHS := $(addprefix -I,${INCLUDE} ${INCPATHS})
 LIBPATHS := $(addprefix -L,${LIBPATHS})
 LIBS     := $(addprefix -l,${LIBS})
 ASMFLAGS := $(foreach VAR, ${ASMFLAGS}, -Wa,${VAR})
-GARBAGE   = $(wildcard *~ *.sw?) ${BIN} ${BUILD} ${DOC}/html ${DOC}/log $(wildcard *.dump)
+GARBAGE   = $(wildcard *~ *.sw?) ${BIN} ${BUILD} ${DOC}/html ${DOC}/log $(wildcard *.dump) core
 
 .PHONY: all clean run debug doc dump
 
