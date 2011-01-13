@@ -29,5 +29,5 @@ void Coroutine::resume() {
 }
 
 void Coroutine::exit() {
-
+  scheduler.exit();
 }

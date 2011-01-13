@@ -14,15 +14,15 @@ Dispatcher::Dispatcher() {
 
 void Dispatcher::go(Entrant& first) {
   if(!c_active) {
-    *c_active = first;
+    c_active = &first;
     toc_go(&(first.savregs));
   }
 }
 
 void Dispatcher::dispatch(Entrant& next) {
   Entrant *running = c_active;
-  *c_active = next;
-  toc_switch(&((*running).savregs), &(next.savregs));
+  c_active = &next;
+  toc_switch(&(running->savregs),&(next.savregs));
 }
 
 Entrant* Dispatcher::active() const {

@@ -59,8 +59,6 @@ extern "C"{
  * instruction pointer points to the supplied kickoff function.
  * Also the actual toc saved esp points to the supplied top of stack
  *
- * \todo write implementation
- *
  * \param regs pointer to the structur toc of the thread
  * \param tos pointer to the top of stack of the thread
  * \param kickoff pointer to method kickoff()
@@ -73,8 +71,6 @@ void toc_settle (struct toc* regs, void* tos, void (*kickoff)(void*), void* obje
  * This function is used to start the first thread/coroutine in the system, it is
  * similar to toc_switch, but it does not need to save the current registers.
  *
- * \todo write implementation
- *
  * \param regs the toc of the first thread
  **/
 void toc_go(struct toc* regs) __attribute__((noinline));
@@ -85,8 +81,6 @@ void toc_go(struct toc* regs) __attribute__((noinline));
  * content of the cpu with the content of the saved registers of the next
  * thread, also the current cpu registers must be saved to the toc structure of
  * the current thread/coroutine
- *
- * \todo write implementation
  *
  * \param next the toc of the next thread
  * \param current storage to save current toc into

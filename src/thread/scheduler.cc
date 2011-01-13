@@ -7,7 +7,6 @@
  *---------------------------------------------------------------------------*/
 
 #include "thread/scheduler.h"
-#include "machine/toc.h"
 
 void Scheduler::schedule() {
   if(!active()) {
@@ -37,7 +36,7 @@ void Scheduler::resume() {
   Entrant* ent = (Entrant*) queue.dequeue();
   
   if(ent){
-    queue.enqueue((Entrant*) active());
+    queue.enqueue(active());
     dispatch(*ent);
   }
 }

@@ -4,6 +4,6 @@
 extern Guard guard;
 
 void kickoff(Coroutine* object) {
-    guard.leave();
-    ((Coroutine*)object)->action();
+  guard.leave();
+  object->action();
 }

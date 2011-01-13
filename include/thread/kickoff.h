@@ -10,8 +10,6 @@
  * this method never returns, since the saved instruction pointer on the stack
  * is bogus.
  *
- * \todo write implementation
- *
  * \param object the coroutine to start
  **/
 void kickoff(Coroutine* object);
