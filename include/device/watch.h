@@ -29,26 +29,18 @@ public:
    **/
   Watch (unsigned int us) : PIT (us) {}
 
-  /** \brief register the watch with the plugbox and enable hardware interrupt
-   *
-   * \todo write implementation
-   */
+  /** \brief register the watch with the plugbox and enable hardware interrupt */
   void windup();
 
   /** \brief prologue of the timer interrupt
    *
    * does nothing
    *
-   * \todo write implementation
-   *
    * \return always true
    **/
   virtual bool prologue();
 
-  /** \brief epilogue implementing the thread switch
-   *
-   * \todo write implementation
-   **/
+  /** \brief epilogue implementing the thread switch **/
   virtual void epilogue();
 };
 

@@ -24,8 +24,10 @@ void Guard::leave() {
   Gate* item = remove_epilogue();
 
   while (item != 0) {
-    item->epilogue();
     item->queued(false);
+    cpu.enable_int();
+    item->epilogue();
+    cpu.disable_int();
 
     item = remove_epilogue();
   }

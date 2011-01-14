@@ -16,6 +16,7 @@
 #include "machine/plugbox.h"
 #include "device/keyboard.h"
 #include "syscall/guarded_scheduler.h"
+#include "device/watch.h"
 
 #include "user/task5.h"
 
@@ -28,6 +29,7 @@ CPU cpu;
 Plugbox plugbox;
 Keyboard keyboard;
 Guarded_Scheduler scheduler;
+Watch watch(25000);
 
 /* METHODS  */
 
@@ -48,6 +50,7 @@ void kernel(uint32_t magic, const Multiboot_Info* addr){
     Task5 task;
     
     keyboard.plugin();
+    watch.windup();
     
     task.action();
 
