@@ -23,6 +23,11 @@ private:
    Gate* gates[256];
 
 public:
+  enum Slots
+  {
+    timer = 32,
+    keyboard = 33
+  };
    
   /** \brief Default constructor
    *
@@ -36,7 +41,7 @@ public:
    * \param gate reference of the gate object containing the handling routine 
    *             for the interrupt
    */
-   void assign(unsigned short slot, Gate& gate) ;
+  void assign(unsigned short slot, Gate& gate) ;
 
   /** \brief report the assigned Gate object for a specific interrupt
    *

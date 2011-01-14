@@ -17,7 +17,7 @@
 #include "device/keyboard.h"
 #include "thread/scheduler.h"
 
-#include "user/task4.h"
+#include "user/task5.h"
 
 /* GLOBAL OBJECTS */
 
@@ -45,7 +45,7 @@ extern "C" void kernel(uint32_t magic, const Multiboot_Info* addr);
 void kernel(uint32_t magic, const Multiboot_Info* addr){
     kout.clear();
 
-    Task4 task;
+    Task5 task;
     
     keyboard.plugin();
     
