@@ -25,8 +25,6 @@ public:
    *
    * Initailises the PIT with supplied value
    *
-   * \todo write implementation
-   *
    * \param us preemtible Thread execution time in microseconds
    **/
   Watch (unsigned int us) : PIT (us) {}

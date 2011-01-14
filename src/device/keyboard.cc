@@ -20,7 +20,7 @@ extern Plugbox plugbox;
 
 /* METHODS */
 void Keyboard::plugin () {
-    plugbox.assign(33, *this);
+    plugbox.assign(Plugbox::keyboard, *this);
 	pic.allow(PIC::keyboard);
 }
 

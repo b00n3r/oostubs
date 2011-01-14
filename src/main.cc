@@ -15,7 +15,7 @@
 #include "machine/cpu.h"
 #include "machine/plugbox.h"
 #include "device/keyboard.h"
-#include "thread/scheduler.h"
+#include "syscall/guarded_scheduler.h"
 
 #include "user/task5.h"
 
@@ -27,7 +27,7 @@ PIC pic;
 CPU cpu;
 Plugbox plugbox;
 Keyboard keyboard;
-Scheduler scheduler;
+Guarded_Scheduler scheduler;
 
 /* METHODS  */
 

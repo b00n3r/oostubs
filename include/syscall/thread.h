@@ -29,16 +29,12 @@ public:
    /** \brief triggers a context switch
    *
    * This method delegates to the Guarded_Scheduler
-   *
-   * \todo write implementation
    **/
   void resume();
 
   /** \brief exit this coroutine
    *
    * This method delegates to the Guarded_Scheduler
-   *
-   * \todo write implementation
    **/
   void exit();
 

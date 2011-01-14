@@ -2,20 +2,28 @@
  * Operating Systems I                                                       *
  *---------------------------------------------------------------------------*
  *                                                                           *
- *                                  P I T                                    *
+ *                   G U A R D E D _ S C H E D U L E R                       *
  *                                                                           *
  *---------------------------------------------------------------------------*/
 
-#include "machine/pit.h"
+#include "syscall/guarded_scheduler.h"
 
-PIT::PIT (unsigned short us) {
+void Guarded_Scheduler::schedule() {
 
 }
 
-unsigned short PIT::interval () {
-  return 0;
+void Guarded_Scheduler::ready(Thread& that) {
+
 }
 
-void PIT::interval(unsigned short us) {
+void Guarded_Scheduler::exit() {
+
+}
+
+void Guarded_Scheduler::kill(Thread* that) {
+
+}
+
+void Guarded_Scheduler::resume() {
 
 }

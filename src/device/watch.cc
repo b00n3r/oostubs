@@ -7,3 +7,15 @@
  *---------------------------------------------------------------------------*/
 
 #include "device/watch.h"
+
+void Watch::windup() {
+
+}
+
+bool Watch::prologue() {
+
+}
+
+void Watch::epilogue() {
+
+}
