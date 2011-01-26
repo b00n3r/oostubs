@@ -11,12 +11,14 @@
 
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
- 
+#include "machine/key.h"
+
 /** \brief %Keyboard driver with interrupt support
  *
- * This class is a subclass of Gate and implements the interrupt routine used 
- * for the keyboard.
- */
+ * This class is a subclass of Gate and implements the interrupt routine used
+ * for the keyboard. It also contains a semaphore based one elementary key
+ * buffer to store pressed keys.
+ **/
 class Keyboard : public Keyboard_Controller, public Gate  {
 private:
   /** \brief storage for fetched keys **/
@@ -37,8 +39,16 @@ public:
    **/
   virtual bool prologue ();
 
-   /** \brief print the fetched key to the screen **/
-  virtual void epilogue();        
+  /** \brief print the fetched key to the screen **/
+  virtual void epilogue();
+  
+  /** \brief get the next Key or block current Thread
+   *
+   * \todo write implementation
+   *
+   * \return the next Key, that was pressed on the keyboard
+   **/
+  Key getkey(); 
 };
 
 #endif
