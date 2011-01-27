@@ -21,7 +21,7 @@ void PIT::interval(unsigned short us) {
   IO_Port controlp (0x43);
   IO_Port rwport (0x40);
   
-  interv = us;
+  interv = us/838 * 1000;
   
   /*
       0: binäre Zählung von 16 Bit
