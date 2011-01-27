@@ -6,4 +6,5 @@ extern Guard guard;
 void kickoff(Coroutine* object) {
   guard.leave();
   object->action();
+  object->exit();
 }

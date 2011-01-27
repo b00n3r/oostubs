@@ -52,7 +52,7 @@ void kernel(uint32_t magic, const Multiboot_Info* addr){
     keyboard.plugin();
     watch.windup();
     
-    task.action();
+    scheduler.ready(task);
 
     scheduler.schedule();
 }
