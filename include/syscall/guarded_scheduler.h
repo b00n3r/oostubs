@@ -10,7 +10,11 @@
 #define __guarded_scheduler_include__
 
 #include "syscall/thread.h"
+#include "guard/secure.h"
+#include "thread/scheduler.h"
 #include "thread/organizer.h"
+
+extern Secure secure;
 
 /** \brief User interface to the Scheduler. 
  *
@@ -25,7 +29,8 @@ public:
    * If there is one contained in the queue of the scheduler.
    **/ 
   void schedule(){
-
+    Secure secure;
+    Scheduler::schedule();
   }
   
   /** \brief Insert the specified thread into the ready queue
@@ -33,7 +38,8 @@ public:
    * \param that reference to the thread to be inserted
    **/
   void ready(Thread& that){
-  
+    Secure secure;
+    Scheduler::ready(that);
   }
 
   /** \brief Remove the currently active thread from the queue
@@ -41,7 +47,8 @@ public:
    * If there are no more threads, wait for new threads to arive.
    **/
   void exit(){
-  
+    Secure secure;
+    Scheduler::exit();
   }
 
   /** \brief Remove the specified thread from the queue of processes.
@@ -51,13 +58,17 @@ public:
    * \param that reference of the thread to be killed.
    **/
   void kill(Thread* that){
-
+    Secure secure;
+    Scheduler::kill(that);
   }
 
   /** \brief Use the scheduling algorithm to get the next thread and
    * resume with that thread.
    **/
-  void resume();
+  void resume(){
+    Secure secure;
+    Scheduler::resume();
+  }
 
   /** \brief get the currently active Thread
    *
