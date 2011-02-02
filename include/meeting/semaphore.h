@@ -18,6 +18,7 @@ class Semaphore : public Waitingroom
 		 *
 		 * \todo write declaration
 		 **/
+		int counter;
 
 	public:
 		/**\brief Construct a new semaphore with initial value

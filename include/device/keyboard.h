@@ -12,6 +12,7 @@
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
 #include "machine/key.h"
+#include "meeting/semaphore.h"
 
 /** \brief %Keyboard driver with interrupt support
  *
@@ -22,9 +23,17 @@
 class Keyboard : public Keyboard_Controller, public Gate  {
 private:
   /** \brief storage for fetched keys **/
-  Key tmpKey;
+  Key tmpKey[1024];
+  
+  /** \brief actual count of stored keys **/
+  unsigned int keyCount;
+  
+  /** \brief Semaphore **/
+  Semaphore semaphore;
    
 public:
+
+  Keyboard() : Keyboard_Controller(), Gate(), semaphore(0) {}
    
   /** \brief enable the interrupt mechanism of the keyboard
    *

@@ -6,7 +6,7 @@
  * based applications.
  **/
 class Task5 : public Application{
-	private:
+	protected:
 /** \brief Declaration of stack names for application stacks **/
 enum StackNames{
 	task5Stack,		/**< Stack of the Task itself **/

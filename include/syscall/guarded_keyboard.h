@@ -23,6 +23,8 @@ public:
 	 * \return the next key, the user has hit
 	 **/
 	Key getkey(){
+	  Secure secure;
+	  return Keyboard::getkey();
 	}
 
 	/** \brief register the Keyboard for interrupt handling
@@ -32,6 +34,8 @@ public:
 	 * \todo write implementation
 	 **/
 	void plugin(){
+	  Secure secure;
+	  Keyboard::plugin();
 	}
 };
 

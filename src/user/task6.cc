@@ -94,7 +94,7 @@ void Task6::Cmd::parseBuffer(){
 			{
 				if(running[i])
 				{
-					scheduler.kill(*apps[i]);
+					scheduler.kill((Thread*) apps[i]);
 					running[i]=false;
 				}
 				else
@@ -122,7 +122,7 @@ void Task6::Cmd::startApp(unsigned int i){
 
 void Task6::Cmd::stopApp(unsigned int i){
 	if(running[i])
-		scheduler.kill(*apps[i]);
+		scheduler.kill((Thread*) apps[i]);
 }
 
 void Task6::Cmd::putChar(char c){

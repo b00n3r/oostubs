@@ -16,7 +16,7 @@
  * Every %Thread contain exactly one line of execution, due to their
  * preemptiveness all operations concerning them must be called Secure
  **/
-class Thread : protected Customer{
+class Thread : public Customer{
 public:
   /** \brief Default constructor
    *

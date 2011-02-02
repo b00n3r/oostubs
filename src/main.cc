@@ -14,7 +14,7 @@
 #include "machine/pic.h"
 #include "machine/cpu.h"
 #include "machine/plugbox.h"
-#include "device/keyboard.h"
+#include "syscall/guarded_keyboard.h"
 #include "syscall/guarded_scheduler.h"
 #include "device/watch.h"
 
@@ -27,7 +27,7 @@ CGA_Stream kout;
 PIC pic;
 CPU cpu;
 Plugbox plugbox;
-Keyboard keyboard;
+Guarded_Keyboard keyboard;
 Guarded_Scheduler scheduler;
 Watch watch(12000); // ca 100 Hz (1/100 * 10^-9 / 838)
 
