@@ -29,7 +29,7 @@ CPU cpu;
 Plugbox plugbox;
 Guarded_Keyboard keyboard;
 Guarded_Scheduler scheduler;
-Watch watch(12000); // ca 100 Hz (1/100 * 10^-9 / 838)
+Watch watch(12000);
 
 /* METHODS  */
 

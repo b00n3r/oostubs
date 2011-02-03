@@ -1,7 +1,7 @@
 #include "meeting/waitingroom.h"
-#include "syscall/guarded_scheduler.h"
+#include "thread/organizer.h"
 
-extern Guarded_Scheduler scheduler;
+extern Organizer scheduler;
 
 Waitingroom::~Waitingroom() {
   Customer* customer = (Customer*) dequeue();

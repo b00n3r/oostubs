@@ -22,7 +22,7 @@ extern Secure secure;
  * of the superclasses Organizer respective Scheduler. 
  * Also Threads and Customers are handled instead of Entrants.
  **/
-class Guarded_Scheduler : public Organizer{
+class Guarded_Scheduler : protected Organizer{
 public:
   /** \brief Start the scheduling by starting the first thread
    *
@@ -39,7 +39,7 @@ public:
    **/
   void ready(Thread& that){
     Secure secure;
-    Organizer::ready((Customer&) that);
+    Organizer::ready(that);
   }
 
   /** \brief Remove the currently active thread from the queue
@@ -59,7 +59,7 @@ public:
    **/
   void kill(Thread* that){
     Secure secure;
-    Organizer::kill(*((Customer*) that));
+    Organizer::kill(*that);
   }
 
   /** \brief Use the scheduling algorithm to get the next thread and

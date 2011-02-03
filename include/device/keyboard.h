@@ -33,6 +33,7 @@ private:
    
 public:
 
+  /** \brief Constructor initializes the semaphore **/
   Keyboard() : Keyboard_Controller(), Gate(), semaphore(0) {}
    
   /** \brief enable the interrupt mechanism of the keyboard
@@ -52,8 +53,6 @@ public:
   virtual void epilogue();
   
   /** \brief get the next Key or block current Thread
-   *
-   * \todo write implementation
    *
    * \return the next Key, that was pressed on the keyboard
    **/

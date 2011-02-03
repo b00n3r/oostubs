@@ -43,21 +43,11 @@ bool Keyboard::prologue () {
 }
 
 void Keyboard::epilogue() {
-    /*kout.setpos(50, 20);
-    kout << tmpKey.ascii();
-	kout.flush();*/
-	
 	semaphore.signal();
 }
 
 Key Keyboard::getkey() {
     semaphore.wait();
-
-    /*if (keyCount == 0) {
-        while(keyCount == 0) {
-            __asm("NOP");
-        }
-    }*/
     
     return tmpKey[--keyCount];
 } 

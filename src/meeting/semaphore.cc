@@ -1,7 +1,7 @@
 #include "meeting/semaphore.h"
-#include "syscall/guarded_scheduler.h"
+#include "thread/organizer.h"
 
-extern Guarded_Scheduler scheduler;
+extern Organizer scheduler;
 
 Semaphore::Semaphore(unsigned int value) {
   counter = value;
@@ -12,7 +12,7 @@ void Semaphore::p() {
   counter--;
 
   if (counter <= 0) {
-    scheduler.block((Waitingroom&) *this);
+    scheduler.block(*this);
   }
 }
 

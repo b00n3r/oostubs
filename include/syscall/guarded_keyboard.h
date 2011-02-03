@@ -18,8 +18,6 @@ public:
 	 * If there are no new keys, the method will block the currently active
 	 * Customer until one is available.
 	 *
-	 * \todo write implementation
-	 *
 	 * \return the next key, the user has hit
 	 **/
 	Key getkey(){
@@ -30,8 +28,6 @@ public:
 	/** \brief register the Keyboard for interrupt handling
 	 *
 	 * This method should only be called by kernel.
-	 *
-	 * \todo write implementation
 	 **/
 	void plugin(){
 	  Secure secure;

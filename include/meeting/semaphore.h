@@ -14,16 +14,11 @@
 class Semaphore : public Waitingroom
 {
 	private:
-		/** \brief internal representation of the semaphore counter
-		 *
-		 * \todo write declaration
-		 **/
+		/** \brief internal representation of the semaphore counter **/
 		int counter;
 
 	public:
 		/**\brief Construct a new semaphore with initial value
-		 *
-		 * \todo write implementation
 		 *
 		 * \param value initial value of the semaphore
 		 **/
@@ -37,8 +32,6 @@ class Semaphore : public Waitingroom
 		 * This method can block if no more free ressources are available.  The
 		 * currently active Customer will be suspended until a ressource is
 		 * freed by the signal() or v() call.
-		 *
-		 * \todo write implementation
 		 **/
 		void p();
 
@@ -46,8 +39,6 @@ class Semaphore : public Waitingroom
 		 *
 		 * This method readies a Customer if there is one currently waiting for
 		 * this semaphore.
-		 *
-		 * \todo write implementation
 		 **/
 		void v();
 
