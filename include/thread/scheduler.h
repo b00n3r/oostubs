@@ -15,7 +15,7 @@
  
 /** \brief Simple FIFO scheduler **/
 class Scheduler : protected Dispatcher {
-private:
+protected:
   /** Queue of threads that are ready to be processed
    * **/
   Queue queue;

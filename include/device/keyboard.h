@@ -11,18 +11,30 @@
 
 #include "machine/keyctrl.h"
 #include "guard/gate.h"
- 
+#include "machine/key.h"
+#include "meeting/semaphore.h"
+
 /** \brief %Keyboard driver with interrupt support
  *
- * This class is a subclass of Gate and implements the interrupt routine used 
- * for the keyboard.
- */
+ * This class is a subclass of Gate and implements the interrupt routine used
+ * for the keyboard. It also contains a semaphore based one elementary key
+ * buffer to store pressed keys.
+ **/
 class Keyboard : public Keyboard_Controller, public Gate  {
 private:
   /** \brief storage for fetched keys **/
-  Key tmpKey;
+  Key tmpKey[1024];
+  
+  /** \brief actual count of stored keys **/
+  unsigned int keyCount;
+  
+  /** \brief Semaphore **/
+  Semaphore semaphore;
    
 public:
+
+  /** \brief Constructor initializes the semaphore **/
+  Keyboard() : Keyboard_Controller(), Gate(), semaphore(0) {}
    
   /** \brief enable the interrupt mechanism of the keyboard
    *
@@ -37,8 +49,14 @@ public:
    **/
   virtual bool prologue ();
 
-   /** \brief print the fetched key to the screen **/
-  virtual void epilogue();        
+  /** \brief print the fetched key to the screen **/
+  virtual void epilogue();
+  
+  /** \brief get the next Key or block current Thread
+   *
+   * \return the next Key, that was pressed on the keyboard
+   **/
+  Key getkey(); 
 };
 
 #endif

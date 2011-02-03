@@ -20,6 +20,8 @@ extern Plugbox plugbox;
 
 /* METHODS */
 void Keyboard::plugin () {
+    keyCount = 0;
+    
     plugbox.assign(Plugbox::keyboard, *this);
 	pic.allow(PIC::keyboard);
 }
@@ -31,7 +33,9 @@ bool Keyboard::prologue () {
         if (k.alt() && k.ctrl() && k.scancode()==83) {
             reboot();
         } else {
-            tmpKey = k;
+            if (keyCount != 1023) {
+                tmpKey[keyCount++] = k;
+            }
         }
 	}
 	
@@ -39,9 +43,11 @@ bool Keyboard::prologue () {
 }
 
 void Keyboard::epilogue() {
-    kout.setpos(50, 20);
-    kout << tmpKey.ascii();
-	kout.flush();
+	semaphore.signal();
 }
 
-
+Key Keyboard::getkey() {
+    semaphore.wait();
+    
+    return tmpKey[--keyCount];
+} 

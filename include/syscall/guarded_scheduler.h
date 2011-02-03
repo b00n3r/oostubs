@@ -12,17 +12,17 @@
 #include "syscall/thread.h"
 #include "guard/secure.h"
 #include "thread/scheduler.h"
-#include "thread/scheduler.h"
+#include "thread/organizer.h"
 
 extern Secure secure;
 
-/** \brief Scheduler guarded by Secure
+/** \brief User interface to the Scheduler. 
  *
- * This Scheduler is interrupt safe and therefore needed to cope with
- * preemptive switching of Threads.  Since now the multitasking is preemptiv
- * Threads instead of Coroutines are handled.
+ * The defined methods are guarded but otherwise directly mapped to the methods 
+ * of the superclasses Organizer respective Scheduler. 
+ * Also Threads and Customers are handled instead of Entrants.
  **/
-class Guarded_Scheduler : public Scheduler{
+class Guarded_Scheduler : protected Organizer{
 public:
   /** \brief Start the scheduling by starting the first thread
    *
@@ -30,7 +30,7 @@ public:
    **/ 
   void schedule(){
     Secure secure;
-    Scheduler::schedule();
+    Organizer::schedule();
   }
   
   /** \brief Insert the specified thread into the ready queue
@@ -39,7 +39,7 @@ public:
    **/
   void ready(Thread& that){
     Secure secure;
-    Scheduler::ready(that);
+    Organizer::ready(that);
   }
 
   /** \brief Remove the currently active thread from the queue
@@ -48,7 +48,7 @@ public:
    **/
   void exit(){
     Secure secure;
-    Scheduler::exit();
+    Organizer::exit();
   }
 
   /** \brief Remove the specified thread from the queue of processes.
@@ -56,10 +56,10 @@ public:
    * If the supplied entry is equal to the currently active coroutine, call exit().
    *
    * \param that reference of the thread to be killed.
-   */
+   **/
   void kill(Thread* that){
     Secure secure;
-    Scheduler::kill(that);
+    Organizer::kill(*that);
   }
 
   /** \brief Use the scheduling algorithm to get the next thread and
@@ -67,7 +67,15 @@ public:
    **/
   void resume(){
     Secure secure;
-    Scheduler::resume();
+    Organizer::resume();
+  }
+
+  /** \brief get the currently active Thread
+   *
+   * \return the current Thread
+   **/
+  Thread* active() const{
+	return static_cast<Thread*>(Organizer::active());
   }
 };
 
