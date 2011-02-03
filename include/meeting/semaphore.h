@@ -52,10 +52,10 @@ class Semaphore : public Waitingroom
 		void v();
 
 		/**\copydoc p()**/
-		void wait(){p();}
+		inline void wait(){p();}
 
 		/**\copydoc v()**/
-		void signal(){v();}
+		inline void signal(){v();}
 };
 
 #endif

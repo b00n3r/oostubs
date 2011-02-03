@@ -53,10 +53,11 @@ void Keyboard::epilogue() {
 Key Keyboard::getkey() {
     semaphore.wait();
 
-    if (keyCount > 0) {
-        return tmpKey[--keyCount];
-    } else {
-        Key invalid;
-        return invalid;
-    }
+    /*if (keyCount == 0) {
+        while(keyCount == 0) {
+            __asm("NOP");
+        }
+    }*/
+    
+    return tmpKey[--keyCount];
 } 

@@ -7,20 +7,24 @@ Semaphore::Semaphore(unsigned int value) {
   counter = value;
 }
 
+// wait
 void Semaphore::p() {
-  if (counter > 0) {
-    counter--;
-  } else {
+  counter--;
+
+  if (counter <= 0) {
     scheduler.block((Waitingroom&) *this);
   }
 }
 
+// signal
 void Semaphore::v() {
-  if (counter < 1) {
+  if (counter < 0) {
     Customer* customer = (Customer*) dequeue();
 
     if (customer) {
       scheduler.wakeup(*customer);
+    } else {
+      counter++;
     }
   } else {
     counter++;

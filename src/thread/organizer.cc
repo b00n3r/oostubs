@@ -1,14 +1,21 @@
 #include "thread/organizer.h"
+#include "guard/guard.h"
 
-void Organizer::block(Waitingroom& waitingroom) {
+extern Guard guard;
+
+void Organizer::block(Waitingroom& waitingroom) {  
+  Entrant* ent;
+
   (*active()).waiting_in(&waitingroom);
   waitingroom.enqueue(active());
-  
-  Entrant* ent = (Entrant*) queue.dequeue();
-  
-  if(ent){
-    dispatch(*ent);
-  }
+
+  do {
+    guard.leave();
+    guard.enter();
+    ent = (Entrant*) queue.dequeue();
+  } while (ent == 0);
+
+  dispatch(*ent);
 }
 
 void Organizer::wakeup(Customer& customer) {
@@ -18,10 +25,10 @@ void Organizer::wakeup(Customer& customer) {
 }
 
 void Organizer::kill(Customer& that) {
-  Waitingroom* wr = that.waiting_in();
+  Waitingroom* waitingroom = that.waiting_in();
 
-  if (wr) {
-    (*wr).remove(that);
+  if (waitingroom) {
+    (*waitingroom).remove(that);
   } else {
     Scheduler::kill(&that);
   }
