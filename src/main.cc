@@ -18,6 +18,7 @@
 #include "syscall/guarded_scheduler.h"
 #include "device/watch.h"
 
+#include "user/idle.h"
 #include "user/task6.h"
 
 /* GLOBAL OBJECTS */
@@ -47,11 +48,13 @@ extern "C" void kernel(uint32_t magic, const Multiboot_Info* addr);
 void kernel(uint32_t magic, const Multiboot_Info* addr){
     kout.clear();
 
+    Idle idle;
     Task6 task;
     
     keyboard.plugin();
     watch.windup();
     
+    scheduler.ready(idle);
     scheduler.ready(task);
 
     scheduler.schedule();
